@@ -25,4 +25,4 @@ jobs:
           run: npm install -g aws-cdk
 
         - name: Synthesize CDK
-          run: cdk synth
+          run: cdk synth --app 'npx ts-node bin/my-app.ts'
