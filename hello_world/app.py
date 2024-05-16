@@ -2,23 +2,14 @@ import json
 import boto3
 
 def lambda_handler(event, context):
-    # Tên bucket S3 mà bạn muốn tải file lên
-    bucket_name = 'stephen-test-bucket1'
-    
-    # Tên file và đường dẫn tới file trên Lambda environment
-    file_name = 'person1.txt'  # Thay đổi tên file nếu cần
-    
-    # Nội dung của file bạn muốn tải lên
+    bucket_name = 'stephen-test-bucket2'
+    file_name = 'person1.txt'
     file_content = b'Hello, world!'
     
-    # Khởi tạo S3 client
     s3 = boto3.client('s3')
 
     try:
-        # Tải file lên S3
         response = s3.put_object(Bucket=bucket_name, Key=file_name, Body=file_content)
-        
-        # Trả về kết quả
         return {
             "statusCode": 200,
             "body": json.dumps({
@@ -28,7 +19,6 @@ def lambda_handler(event, context):
             })
         }
     except Exception as e:
-        # Xử lý lỗi nếu có
         return {
             "statusCode": 500,
             "body": json.dumps({
@@ -36,5 +26,3 @@ def lambda_handler(event, context):
                 "error": str(e)
             })
         }
-
-    print('Hello from Thang')
